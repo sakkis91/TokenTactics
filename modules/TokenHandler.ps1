@@ -606,6 +606,8 @@ function Invoke-RefreshToMSGraphToken {
     Param([Parameter(Mandatory=$true)]
     [string]$domain,
     [Parameter(Mandatory=$false)]
+    [string]$secret,
+    [Parameter(Mandatory=$false)]
     [string]$refreshToken = $response.refresh_token,
     [Parameter(Mandatory=$False)]
     [String]$ClientId = "d3590ed6-52b3-4102-aeff-aad2292ab01c",
@@ -646,6 +648,7 @@ function Invoke-RefreshToMSGraphToken {
         "grant_type" =    "refresh_token"
         "refresh_token" = $refreshToken
         "scope"=         "openid"
+        "client_secret"= $secret
     }
 
     $global:MSGraphToken = Invoke-RestMethod -UseBasicParsing -Method Post -Uri "$($authUrl)/oauth2/token?api-version=1.0" -Headers $Headers -Body $body
