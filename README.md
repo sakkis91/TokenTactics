@@ -1,3 +1,7 @@
+# Fork edit
+Added the -secret parameter to Invoke-RefreshToMSGraphToken to include "client_secret" in the HTTP body.
+Needed in situations such as Illicit Consent Grant attack with an app that has only a Web redirect URI. Those are considered confidential and hence the app secret is required for authentication.
+
 # TokenTactics
 Azure JSON Web Token ("JWT") Manipulation Toolset
 
